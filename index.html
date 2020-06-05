@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>My Family</title>
+</head>
+
+<body>
+    <header>
+        <h1>My Family</h1>
+        <div class="edit_tree">
+            <div onclick="activateEditMode()" class="power-switch">
+                <input type="checkbox" />
+                <div class="button">
+                    <svg class="power-off">
+                    <use xlink:href="#line" class="line" />
+                    <use xlink:href="#circle" class="circle" />
+                  </svg>
+                    <svg class="power-on">
+                    <use xlink:href="#line" class="line" />
+                    <use xlink:href="#circle" class="circle" />
+                  </svg>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="line">
+                  <line x1="75" y1="34" x2="75" y2="58"/>
+                </symbol>
+                <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="circle">
+                  <circle cx="75" cy="80" r="35"/>
+                </symbol>
+            </svg>
+
+        </div>
+    </header>
+    <main>
+        <div class="row generation-0">
+            <div onclick="createNewUserContainer()" class="create_new_user_btn left_btn">+</div>
+            <div class="user_container generation-1_user-1">
+                <p class="surname">Тихоненко</p>
+                <p class="name">Игорь</p>
+                <p class="patronymic">Валерьевич</p>
+                <div class="life_years">
+                    <p class="mt-10">Дата Рождения</p>
+                    <p class="birth_date">22.08.1993</p>
+                    <p class="mt-10 still_alive">Дата Смерти</p>
+                    <p class="death_date still_alive">--.--.----</p>
+                </div>
+            </div>
+            <div onclick="createNewUserContainer()" class="create_new_user_btn right_btn">+</div>
+        </div>
+        <div class="row generation-1">
+            <div class="user_container generation-1_user-1">mock data</div>
+            <div class="user_container generation-1_user-1">mock data</div>
+        </div>
+        <div class="row generation-2">
+            <div class="user_container generation-1_user-1">mock data</div>
+            <div class="user_container generation-1_user-1">mock data</div>
+            <div class="user_container generation-1_user-1">mock data</div>
+            <div class="user_container generation-1_user-1">mock data</div>
+        </div>
+    </main>
+</body>
+
+<script src="./js/main.js"></script>
+
+</html>

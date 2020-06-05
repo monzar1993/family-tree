@@ -1,0 +1,229 @@
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background: #eee;
+    overflow: hidden;
+    p {
+        color: #000;
+        text-align: center;
+        margin: 0;
+    }
+    .mt-10 {
+        margin-top: 10px;
+    }
+}
+
+header {
+    background: #000;
+    width: 100%;
+    text-align: end;
+    position: relative;
+    overflow: hidden;
+    h1 {
+        color: #fafafa;
+        text-align: center;
+        padding: 40px 0;
+        font-weight: 700;
+        font-family: "Architects Daughter", cursive;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+    }
+    .edit_tree {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        right: -1%;
+        top: 50%;
+        transform: translateY(-50%);
+        .power-switch {
+            --color-invert: #ffffff;
+            --width: 150px;
+            --height: 150px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: var(--width);
+            height: var(--height);
+            transform: scale(0.6);
+            .button {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                &:after {
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    background: radial-gradient(circle closest-side, var(--color-invert), transparent);
+                    filter: blur(20px);
+                    opacity: 0;
+                    transition: opacity 1s ease, transform 1s ease;
+                    transform: perspective(1px) translateZ(0);
+                    backface-visibility: hidden;
+                }
+                .power-on,
+                .power-off {
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    z-index: 1;
+                    fill: none;
+                    stroke: var(--color-invert);
+                    stroke-width: 8px;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    .line {
+                        opacity: 0.2;
+                    }
+                    .circle {
+                        opacity: 0.2;
+                        transform: rotate(-58deg);
+                        transform-origin: center 80px;
+                        stroke-dasharray: 220;
+                        stroke-dashoffset: 40;
+                    }
+                }
+                .power-on {
+                    filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8));
+                    .line {
+                        opacity: 0;
+                        transition: opacity 0.3s ease 1s;
+                    }
+                    .circle {
+                        opacity: 1;
+                        stroke-dashoffset: 220;
+                        transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+                    }
+                }
+            }
+            input {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                z-index: 2;
+                cursor: pointer;
+                opacity: 0;
+                &:checked {
+                    +.button {
+                        &:after {
+                            opacity: 0.15;
+                            transform: scale(2) perspective(1px) translateZ(0);
+                            backface-visibility: hidden;
+                            transition: opacity 0.5s ease, transform 0.5s ease;
+                        }
+                        .power-on,
+                        .power-off {
+                            animation: click-animation 0.3s ease forwards;
+                            transform: scale(1);
+                            .line {
+                                animation: line-animation 0.8s ease-in forwards;
+                            }
+                            .circle {
+                                transform: rotate(302deg);
+                            }
+                        }
+                        .power-on {
+                            .line {
+                                opacity: 1;
+                                transition: opacity 0.05s ease-in 0.55s;
+                            }
+                            .circle {
+                                transform: rotate(302deg);
+                                stroke-dashoffset: 40;
+                                transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @keyframes line-animation {
+            0% {
+                transform: translateY(0);
+            }
+            10% {
+                transform: translateY(10px);
+            }
+            40% {
+                transform: translateY(-25px);
+            }
+            60% {
+                transform: translateY(-25px);
+            }
+            85% {
+                transform: translateY(10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        @keyframes click-animation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column-reverse;
+    height: calc(100vh - 125px);
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+        width: 100%;
+        height: 200px;
+        border: 2px solid #000;
+        border-left: unset;
+        border-right: unset;
+        margin: 20px 0;
+        background: #fafafa;
+        .user_container {
+            position: relative;
+            min-width: 100px;
+            min-height: 150px;
+            border: 2px solid;
+            margin: 0 20px;
+            padding: 5px;
+            .life_years {
+                p {
+                    font-size: 12px;
+                }
+                .still_alive {
+                    display: none;
+                }
+            }
+        }
+        .create_new_user_btn {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            min-width: 55px;
+            min-height: 55px;
+            max-width: 55px;
+            max-height: 55px;
+            border-radius: 50%;
+            background: green;
+            color: #fff;
+            font-size: 50px;
+            &.active_editor_mode {
+                display: flex;
+            }
+        }
+    }
+}
